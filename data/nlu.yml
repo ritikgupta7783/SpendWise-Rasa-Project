@@ -1,0 +1,125 @@
+
+version: "3.1"
+
+nlu:
+
+# -------------------------
+# GREETING INTENT
+# -------------------------
+- intent: greet
+  examples: |
+    - hi
+    - hello
+    - hey
+    - good morning
+    - good evening
+    - hello spendwise
+    - hey there
+
+# -------------------------
+# GOODBYE INTENT
+# -------------------------
+- intent: goodbye
+  examples: |
+    - bye
+    - goodbye
+    - see you later
+    - talk to you later
+    - exit
+    - see you
+
+# -------------------------
+# ADD EXPENSE INTENT
+# -------------------------
+- intent: add_expense
+  examples: |
+    - I spent [200](amount) on [food](category)
+    - Add [500](amount) for [shopping](category)
+    - I paid [150](amount) for [transport](category)
+    - Record [300](amount) spent on [entertainment](category)
+    - I bought lunch for [120](amount)
+    - Add an expense of [250](amount) for [food](category)
+    - I spent [1000](amount) on [shopping](category)
+    - Record my [450](amount) [travel](category) expense
+    - I paid [80](amount) for [groceries](category)
+    - spent [600](amount) on [education](category)
+
+# -------------------------
+# CHECK TOTAL INTENT
+# -------------------------
+- intent: check_total
+  examples: |
+    - How much have I spent?
+    - What is my total spending?
+    - Show my total expenses
+    - Calculate my expenses
+    - How much money did I spend?
+    - Tell me my total expenditure
+    - What is my spending so far?
+
+# -------------------------
+# CATEGORY SUMMARY INTENT
+# -------------------------
+- intent: category_summary
+  examples: |
+    - Show my category wise expenses
+    - How much did I spend on each category?
+    - Show my spending breakdown
+    - Give me a category summary
+    - Where is my money going?
+    - Show expenses by category
+
+# -------------------------
+# SHOW HISTORY INTENT
+# -------------------------
+- intent: show_history
+  examples: |
+    - Show my recent expenses
+    - Display my expense history
+    - What did I spend recently?
+    - Show all transactions
+    - List my expenses
+    - Show my last expenses
+
+# -------------------------
+# DELETE EXPENSE INTENT
+# -------------------------
+- intent: delete_expense
+  examples: |
+    - Delete my last expense
+    - Remove an expense
+    - I want to delete a transaction
+    - Delete an expense record
+    - Remove my recent transaction
+
+# -------------------------
+# SET BUDGET INTENT
+# -------------------------
+- intent: set_budget
+  examples: |
+    - Set my [food](category) budget to [3000](amount)
+    - My [shopping](category) budget is [5000](amount)
+    - Set a monthly budget of [10000](amount) for [food](category)
+    - I want a [2000](amount) [travel](category) budget
+
+# -------------------------
+# CHECK BUDGET INTENT
+# -------------------------
+- intent: check_budget
+  examples: |
+    - Check my budget
+    - How much budget is left?
+    - Am I exceeding my budget?
+    - Show my budget status
+    - How much can I still spend?
+
+# -------------------------
+# BOT HELP INTENT
+# -------------------------
+- intent: bot_help
+  examples: |
+    - What can you do?
+    - Help me
+    - Show available commands
+    - How do I use SpendWise?
+    - What features do you have?

@@ -1,0 +1,103 @@
+
+version: "3.1"
+
+# 1. INTENTS
+intents:
+  - greet
+  - goodbye
+  - add_expense
+  - check_total
+  - category_summary
+  - show_history
+  - delete_expense
+  - set_budget
+  - check_budget
+  - bot_help
+  - nlu_fallback
+
+# 2. ENTITIES
+entities:
+  - amount
+  - category
+
+# 3. SLOTS
+slots:
+  amount:
+    type: float
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: amount
+
+  category:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: category
+
+  description:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: custom
+
+# 4. RESPONSES
+responses:
+
+  utter_greet:
+    - text: "Hello! Welcome to SpendWise. How can I help you manage your expenses today?"
+
+  utter_goodbye:
+    - text: "Goodbye! Keep tracking your expenses with SpendWise."
+
+  utter_ask_amount:
+    - text: "How much did you spend?"
+
+  utter_ask_category:
+    - text: "Which category does this expense belong to? For example, Food, Shopping or Travel."
+
+  utter_expense_added:
+    - text: "Your expense has been successfully saved!"
+
+  utter_total:
+    - text: "Let me calculate your total spending."
+
+  utter_category_summary:
+    - text: "Here is your category-wise spending summary."
+
+  utter_history:
+    - text: "Here are your recent expenses."
+
+  utter_deleted:
+    - text: "Your expense has been deleted."
+
+  utter_budget_set:
+    - text: "Your budget has been saved successfully."
+
+  utter_budget_status:
+    - text: "Here is your current budget status."
+
+  utter_help:
+    - text: |
+        I am SpendWise, your personal expense tracker!
+        You can ask me to:
+        1. Add an expense
+        2. Check total spending
+        3. View category-wise expenses
+        4. View expense history
+        5. Set a budget
+        6. Check your budget
+
+  utter_fallback:
+    - text: "Sorry, I didn't understand that. Try asking me to add an expense or check your spending."
+
+# 5. CUSTOM ACTIONS
+actions:
+  - action_add_expense
+  - action_check_total
+  - action_category_summary
+  - action_show_history
+  - action_delete_expense
+  - action_set_budget
+  - action_check_budget

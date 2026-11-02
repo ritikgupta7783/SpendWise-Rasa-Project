@@ -1,0 +1,21 @@
+# Environment variables and secrets
+.env
+
+# Python virtual environment
+rasa_venv/
+venv/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Rasa generated files
+models/
+.log
+
+# Temporary files
+temp/
+pip-cache/
+
+# IDE
+.vscode/

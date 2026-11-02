@@ -1,0 +1,352 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SpendWise | Smart Expense Tracker</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<div class="app-layout">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+            <div class="brand-icon">₹</div>
+            <div>
+                <h2>SpendWise</h2>
+                <span>Personal Finance</span>
+            </div>
+        </div>
+
+        <div class="menu-label">MENU</div>
+
+        <nav class="navigation">
+            <a href="#dashboard" class="nav-item active">
+                <span>▦</span> Dashboard
+            </a>
+
+            <a href="#transactions" class="nav-item">
+                <span>⇄</span> Transactions
+            </a>
+
+            <a href="#analytics" class="nav-item">
+                <span>▥</span> Analytics
+            </a>
+
+            <a href="#budgets" class="nav-item">
+                <span>◎</span> Budgets
+            </a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="assistant-card">
+                <div class="assistant-icon">✦</div>
+                <h3>AI Assistant</h3>
+                <p>Track your money through natural conversations.</p>
+                <button onclick="openChat()">Chat with AI →</button>
+            </div>
+
+            <div class="profile">
+                <div class="avatar">R</div>
+                <div>
+                    <strong>SpendWise User</strong>
+                    <small>Personal Account</small>
+                </div>
+            </div>
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="main-content" id="dashboard">
+
+        <header class="topbar">
+
+            <div>
+                <div class="breadcrumb">Workspace / Dashboard</div>
+                <h1>Financial Overview</h1>
+                <p class="subtitle">Welcome back! Here's your spending overview.</p>
+            </div>
+
+            <div class="top-actions">
+                <div class="live-status">
+                    <span class="status-dot"></span>
+                    System Online
+                </div>
+
+                <button class="primary-button" onclick="openChat()">
+                    ✦ Ask SpendWise
+                </button>
+            </div>
+
+        </header>
+
+
+        <!-- SUMMARY CARDS -->
+
+        <section class="stats-grid">
+
+            <article class="stat-card">
+                <div class="stat-top">
+                    <span>Total Spending</span>
+                    <span class="stat-icon purple">₹</span>
+                </div>
+                <h2 id="totalExpenses">₹0.00</h2>
+                <p class="stat-description">All recorded transactions</p>
+            </article>
+
+            <article class="stat-card">
+                <div class="stat-top">
+                    <span>This Month</span>
+                    <span class="stat-icon blue">▦</span>
+                </div>
+                <h2 id="monthlyExpenses">₹0.00</h2>
+                <p class="stat-description">Current month's spending</p>
+            </article>
+
+            <article class="stat-card">
+                <div class="stat-top">
+                    <span>Transactions</span>
+                    <span class="stat-icon orange">⇄</span>
+                </div>
+                <h2 id="totalTransactions">0</h2>
+                <p class="stat-description">Recorded expenses</p>
+            </article>
+
+            <article class="stat-card">
+                <div class="stat-top">
+                    <span>Budget Categories</span>
+                    <span class="stat-icon green">◎</span>
+                </div>
+                <h2 id="budgetCount">0</h2>
+                <p class="stat-description">Active budgets</p>
+            </article>
+
+        </section>
+
+
+        <!-- CHARTS -->
+
+        <section class="charts-grid" id="analytics">
+
+            <article class="panel spending-panel">
+
+                <div class="panel-header">
+                    <div>
+                        <h3>Category Breakdown</h3>
+                        <p>Your spending by category</p>
+                    </div>
+                    <span class="panel-tag">All time</span>
+                </div>
+
+                <div class="chart-container">
+                    <canvas id="categoryChart"></canvas>
+                </div>
+
+            </article>
+
+
+            <article class="panel activity-panel">
+
+                <div class="panel-header">
+                    <div>
+                        <h3>Spending Summary</h3>
+                        <p>Current financial snapshot</p>
+                    </div>
+                </div>
+
+                <div class="summary-content">
+
+                    <div class="summary-row">
+                        <span>Total spending</span>
+                        <strong id="summaryTotal">₹0.00</strong>
+                    </div>
+
+                    <div class="summary-row">
+                        <span>Monthly spending</span>
+                        <strong id="summaryMonthly">₹0.00</strong>
+                    </div>
+
+                    <div class="summary-row">
+                        <span>Transactions</span>
+                        <strong id="summaryTransactions">0</strong>
+                    </div>
+
+                    <div class="summary-row">
+                        <span>Budget categories</span>
+                        <strong id="summaryBudgets">0</strong>
+                    </div>
+
+                </div>
+
+                <div class="insight-box">
+                    <span>✦</span>
+                    <div>
+                        <strong>Spend smarter with SpendWise</strong>
+                        <p>Use your AI assistant to understand your spending habits.</p>
+                    </div>
+                </div>
+
+            </article>
+
+        </section>
+
+
+        <!-- TRANSACTIONS -->
+
+        <section class="panel transactions-panel" id="transactions">
+
+            <div class="panel-header">
+
+                <div>
+                    <h3>Recent Transactions</h3>
+                    <p>Your latest recorded expenses</p>
+                </div>
+
+                <button class="text-button" onclick="loadDashboard()">
+                    Refresh ↻
+                </button>
+
+            </div>
+
+            <div class="table-wrapper">
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>DESCRIPTION</th>
+                            <th>CATEGORY</th>
+                            <th>DATE</th>
+                            <th>AMOUNT</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="transactionsBody">
+                        <tr>
+                            <td colspan="4" class="empty-state">
+                                Loading transactions...
+                            </td>
+                        </tr>
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- BUDGETS -->
+
+        <section class="panel budgets-panel" id="budgets">
+
+            <div class="panel-header">
+                <div>
+                    <h3>Monthly Budgets</h3>
+                    <p>Monitor your category-wise budgets</p>
+                </div>
+            </div>
+
+            <div id="budgetList" class="budget-list">
+                <p class="empty-state">Loading budgets...</p>
+            </div>
+
+        </section>
+
+
+        <footer>
+            <span>SpendWise © 2026</span>
+            <span>Powered by Rasa + MongoDB Atlas</span>
+        </footer>
+
+    </main>
+
+</div>
+
+
+<!-- CHATBOT -->
+
+<div class="chat-widget" id="chatWidget">
+
+    <div class="chat-header">
+
+        <div class="chat-heading">
+            <div class="bot-avatar">✦</div>
+            <div>
+                <h3>SpendWise AI</h3>
+                <span><i></i> Online Assistant</span>
+            </div>
+        </div>
+
+        <button class="close-chat" onclick="closeChat()">×</button>
+
+    </div>
+
+
+    <div class="chat-messages" id="chatMessages">
+
+        <div class="bot-message">
+            Hello! 👋 I'm your SpendWise assistant.
+
+            <br><br>
+
+            Ask me to add expenses, check your spending, or manage budgets.
+        </div>
+
+    </div>
+
+
+    <div class="chat-suggestions">
+        <button onclick="sendSuggestion('How much have I spent?')">
+            Total spending
+        </button>
+
+        <button onclick="sendSuggestion('Show my recent expenses')">
+            Recent expenses
+        </button>
+    </div>
+
+
+    <form class="chat-input-area" id="chatForm">
+
+        <input
+            type="text"
+            id="chatInput"
+            placeholder="Ask anything about your expenses..."
+            autocomplete="off"
+            required
+        >
+
+        <button type="submit" id="sendButton">➤</button>
+
+    </form>
+
+</div>
+
+
+<button class="floating-chat" id="floatingChat" onclick="openChat()">
+    ✦
+</button>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,64 @@
+
+version: "3.1"
+
+stories:
+
+# Story 1: Greeting
+- story: greet user
+  steps:
+    - intent: greet
+    - action: utter_greet
+
+# Story 2: Goodbye
+- story: say goodbye
+  steps:
+    - intent: goodbye
+    - action: utter_goodbye
+
+# Story 3: Add expense
+- story: add a new expense
+  steps:
+    - intent: add_expense
+    - action: action_add_expense
+
+# Story 4: Check total expenses
+- story: check total spending
+  steps:
+    - intent: check_total
+    - action: action_check_total
+
+# Story 5: Category summary
+- story: view category summary
+  steps:
+    - intent: category_summary
+    - action: action_category_summary
+
+# Story 6: Show expense history
+- story: view expense history
+  steps:
+    - intent: show_history
+    - action: action_show_history
+
+# Story 7: Delete expense
+- story: delete an expense
+  steps:
+    - intent: delete_expense
+    - action: action_delete_expense
+
+# Story 8: Set budget
+- story: set monthly budget
+  steps:
+    - intent: set_budget
+    - action: action_set_budget
+
+# Story 9: Check budget
+- story: check budget status
+  steps:
+    - intent: check_budget
+    - action: action_check_budget
+
+# Story 10: Help
+- story: help user
+  steps:
+    - intent: bot_help
+    - action: utter_help
