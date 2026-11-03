@@ -1,3 +1,7 @@
+/* ==========================================
+   SPENDWISE – STYLES
+========================================== */
+
 :root {
     --background: #090b0e;
     --sidebar: #0e1116;
@@ -11,6 +15,7 @@
     --purple: #8957e5;
     --green: #2ea043;
     --red: #f85149;
+    --amber: #d29922;
 }
 
 *, *::before, *::after {
@@ -19,12 +24,17 @@
     box-sizing: border-box;
 }
 
+[hidden] {
+    display: none !important;
+}
+
 html {
     scroll-behavior: smooth;
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Inter", Helvetica, Arial, sans-serif;
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Helvetica, Arial, sans-serif;
     background: var(--background);
     color: var(--text);
     -webkit-font-smoothing: antialiased;
@@ -38,12 +48,28 @@ button {
     cursor: pointer;
 }
 
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+}
+
 .app-layout {
     display: flex;
     min-height: 100vh;
 }
 
-/* SIDEBAR */
+/* ---------- SIDEBAR ---------- */
 
 .sidebar {
     width: 240px;
@@ -55,6 +81,7 @@ button {
     position: fixed;
     inset: 0 auto 0 0;
     z-index: 10;
+    overflow-y: auto;
 }
 
 .brand {
@@ -65,6 +92,7 @@ button {
 }
 
 .brand-icon {
+    flex: 0 0 36px;
     height: 36px;
     width: 36px;
     background: #212630;
@@ -80,6 +108,7 @@ button {
 .brand h2 {
     font-size: 15px;
     font-weight: 600;
+    line-height: 1.25;
     letter-spacing: -0.2px;
 }
 
@@ -110,7 +139,7 @@ button {
     font-size: 13px;
     font-weight: 500;
     border-radius: 6px;
-    transition: background 0.15s ease, color 0.15s ease;
+    transition: background-color 0.15s ease, color 0.15s ease;
 }
 
 .nav-item span {
@@ -126,7 +155,6 @@ button {
 .nav-item.active {
     color: var(--text);
     background: #1f2937;
-    border-left: none;
 }
 
 .sidebar-bottom {
@@ -138,7 +166,7 @@ button {
     border: 1px solid var(--border);
     padding: 14px;
     border-radius: 8px;
-    margin-bottom: 16px;
+    margin: 24px 0 16px;
 }
 
 .assistant-icon {
@@ -168,6 +196,10 @@ button {
     padding: 0;
 }
 
+.assistant-card button:hover {
+    color: var(--accent-hover);
+}
+
 .profile {
     display: flex;
     gap: 10px;
@@ -177,6 +209,7 @@ button {
 }
 
 .avatar {
+    flex: 0 0 32px;
     height: 32px;
     width: 32px;
     display: grid;
@@ -198,14 +231,20 @@ button {
     font-size: 11px;
 }
 
-
-/* MAIN CONTENT */
+/* ---------- MAIN CONTENT ---------- */
 
 .main-content {
     margin-left: 240px;
     padding: 32px 40px;
     width: calc(100% - 240px);
+    min-width: 0;
     max-width: 1600px;
+}
+
+#analytics,
+#transactions,
+#budgets {
+    scroll-margin-top: 16px;
 }
 
 .topbar {
@@ -246,6 +285,7 @@ button {
     display: flex;
     align-items: center;
     gap: 6px;
+    white-space: nowrap;
 }
 
 .status-dot {
@@ -263,15 +303,15 @@ button {
     padding: 8px 14px;
     font-size: 12px;
     font-weight: 500;
-    transition: background 0.15s ease;
+    white-space: nowrap;
+    transition: background-color 0.15s ease;
 }
 
 .primary-button:hover {
     background: #2ea043;
 }
 
-
-/* STAT CARDS */
+/* ---------- STAT CARDS ---------- */
 
 .stats-grid {
     display: grid;
@@ -285,6 +325,7 @@ button {
     border: 1px solid var(--border);
     border-radius: 8px;
     padding: 18px;
+    min-width: 0;
     transition: border-color 0.15s ease;
 }
 
@@ -311,31 +352,17 @@ button {
     font-size: 14px;
 }
 
-.purple {
-    background: #1f1b2e;
-    color: #d2a8ff;
-}
-
-.blue {
-    background: #111b27;
-    color: #58a6ff;
-}
-
-.orange {
-    background: #271c19;
-    color: #ffa657;
-}
-
-.green {
-    background: #11221b;
-    color: #3fb950;
-}
+.stat-icon.purple { background: #1f1b2e; color: #d2a8ff; }
+.stat-icon.blue   { background: #111b27; color: #58a6ff; }
+.stat-icon.orange { background: #271c19; color: #ffa657; }
+.stat-icon.green  { background: #11221b; color: #3fb950; }
 
 .stat-card h2 {
     font-size: 22px;
     font-weight: 600;
     margin: 12px 0 4px;
     letter-spacing: -0.4px;
+    overflow-wrap: anywhere;
 }
 
 .stat-description {
@@ -343,8 +370,7 @@ button {
     font-size: 11px;
 }
 
-
-/* PANELS */
+/* ---------- PANELS ---------- */
 
 .charts-grid {
     display: grid;
@@ -359,6 +385,11 @@ button {
     border-radius: 8px;
     padding: 20px;
     margin-bottom: 16px;
+    min-width: 0;
+}
+
+.charts-grid .panel {
+    margin-bottom: 0;
 }
 
 .panel-header {
@@ -387,11 +418,24 @@ button {
     padding: 4px 8px;
     border-radius: 4px;
     font-size: 11px;
+    white-space: nowrap;
 }
 
 .chart-container {
-    height: 240px;
+    height: 280px;
     position: relative;
+}
+
+.chart-empty {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    padding: 28px 12px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.6;
 }
 
 .summary-content {
@@ -403,6 +447,7 @@ button {
 .summary-row {
     display: flex;
     justify-content: space-between;
+    gap: 12px;
     font-size: 13px;
 }
 
@@ -442,8 +487,7 @@ button {
     margin-top: 4px;
 }
 
-
-/* TRANSACTIONS */
+/* ---------- TRANSACTIONS ---------- */
 
 .transactions-panel {
     margin-bottom: 24px;
@@ -457,10 +501,16 @@ button {
     color: var(--text);
     font-size: 11px;
     font-weight: 500;
+    white-space: nowrap;
 }
 
 .text-button:hover {
     background: var(--panel-hover);
+}
+
+.text-button:disabled {
+    opacity: 0.5;
+    cursor: progress;
 }
 
 .table-wrapper {
@@ -484,6 +534,11 @@ thead th {
     border-bottom: 1px solid var(--border);
 }
 
+thead th:last-child,
+tbody td.amount {
+    text-align: right;
+}
+
 tbody td {
     font-size: 12px;
     padding: 12px;
@@ -497,6 +552,7 @@ tbody tr:last-child td {
 .amount {
     color: var(--red);
     font-weight: 600;
+    white-space: nowrap;
 }
 
 .category-badge {
@@ -515,13 +571,16 @@ tbody tr:last-child td {
     font-size: 12px;
 }
 
-
-/* BUDGETS */
+/* ---------- BUDGETS ---------- */
 
 .budget-list {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 16px;
+}
+
+.budget-list .empty-state {
+    grid-column: 1 / -1;
 }
 
 .budget-item {
@@ -542,6 +601,7 @@ tbody tr:last-child td {
 
 .budget-info span {
     color: var(--muted);
+    text-align: right;
 }
 
 .progress-track {
@@ -555,7 +615,11 @@ tbody tr:last-child td {
     height: 100%;
     background: var(--accent);
     border-radius: 2px;
+    transition: width 0.4s ease;
 }
+
+.progress-fill.warn { background: var(--amber); }
+.progress-fill.over { background: #ff7373; }
 
 .budget-details {
     color: var(--muted);
@@ -563,8 +627,11 @@ tbody tr:last-child td {
     margin-top: 8px;
 }
 
+.budget-details.over {
+    color: #ff7373;
+}
 
-/* FOOTER */
+/* ---------- FOOTER ---------- */
 
 footer {
     display: flex;
@@ -576,40 +643,46 @@ footer {
     margin-top: 24px;
 }
 
-
-/* CHAT WIDGET */
+/* ==========================================
+   SPENDWISE CHATBOT
+========================================== */
 
 .chat-widget {
     position: fixed;
     right: 24px;
     bottom: 84px;
-    width: 340px;
-    height: 480px;
+
+    width: min(420px, calc(100vw - 32px));
+    height: min(620px, calc(100vh - 110px));
+    height: min(620px, calc(100dvh - 110px));
+
+    min-width: 280px;
+    min-height: 260px;
+    max-width: calc(100vw - 16px);
+    max-height: calc(100vh - 16px);
+    max-height: calc(100dvh - 16px);
+
     background: var(--panel);
     border: 1px solid var(--border);
-    border-radius: 10px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
-    display: none;
+    border-radius: 12px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+
+    display: none;              /* shown only while .open is set */
     flex-direction: column;
-    z-index: 100;
     overflow: hidden;
+    z-index: 1000;
 }
 
 .chat-widget.open {
     display: flex;
-    animation: appear 0.15s ease;
 }
 
-@keyframes appear {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+body.chat-interacting {
+    user-select: none;
+    cursor: grabbing;
 }
+
+/* ---------- Draggable header ---------- */
 
 .chat-header {
     background: var(--sidebar);
@@ -618,60 +691,96 @@ footer {
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+    cursor: grab;
+    user-select: none;
+    touch-action: none;
+}
+
+.chat-header:active {
+    cursor: grabbing;
 }
 
 .chat-heading {
     display: flex;
     align-items: center;
     gap: 10px;
+    pointer-events: none;
 }
 
 .bot-avatar {
-    height: 30px;
-    width: 30px;
+    height: 36px;
+    width: 36px;
     background: #212630;
     border: 1px solid var(--border);
     display: grid;
     place-items: center;
-    border-radius: 6px;
-    font-size: 14px;
+    border-radius: 8px;
+    font-size: 16px;
 }
 
 .chat-heading h3 {
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 600;
 }
 
 .chat-heading span {
-    font-size: 10px;
+    font-size: 11px;
     color: var(--muted);
     display: block;
-    margin-top: 2px;
+    margin-top: 3px;
 }
 
 .chat-heading span i {
     display: inline-block;
-    width: 5px;
-    height: 5px;
+    width: 6px;
+    height: 6px;
     border-radius: 50%;
     background: var(--green);
-    margin-right: 4px;
+    margin-right: 5px;
 }
 
+.chat-controls {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.minimize-chat,
 .close-chat {
     background: transparent;
     border: 0;
     color: var(--muted);
-    font-size: 18px;
+    width: 28px;
+    height: 28px;
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+    line-height: 1;
+    border-radius: 5px;
 }
 
+.minimize-chat:hover,
 .close-chat:hover {
     color: var(--text);
+    background: var(--panel-hover);
+}
+
+/* ---------- Chat body ---------- */
+
+.chat-body {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
 }
 
 .chat-messages {
     flex: 1;
+    min-height: 0;
     overflow-y: auto;
+    overscroll-behavior: contain;
     padding: 14px;
     display: flex;
     flex-direction: column;
@@ -682,9 +791,9 @@ footer {
 .user-message {
     max-width: 85%;
     padding: 10px 12px;
-    font-size: 12px;
+    font-size: 13px;
     line-height: 1.5;
-    border-radius: 6px;
+    border-radius: 8px;
     white-space: pre-wrap;
     overflow-wrap: anywhere;
 }
@@ -709,15 +818,16 @@ footer {
     flex-wrap: wrap;
     background: var(--sidebar);
     border-top: 1px solid var(--border);
+    flex-shrink: 0;
 }
 
 .chat-suggestions button {
     background: var(--panel);
     border: 1px solid var(--border);
-    border-radius: 4px;
+    border-radius: 5px;
     color: var(--text);
     font-size: 11px;
-    padding: 4px 8px;
+    padding: 6px 9px;
 }
 
 .chat-suggestions button:hover {
@@ -731,6 +841,7 @@ footer {
     display: flex;
     gap: 8px;
     background: var(--sidebar);
+    flex-shrink: 0;
 }
 
 .chat-input-area input {
@@ -738,11 +849,11 @@ footer {
     min-width: 0;
     background: var(--panel);
     border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 8px 10px;
+    border-radius: 7px;
+    padding: 10px 12px;
     outline: none;
     color: var(--text);
-    font-size: 12px;
+    font-size: 13px;
 }
 
 .chat-input-area input:focus {
@@ -750,15 +861,62 @@ footer {
 }
 
 .chat-input-area button {
-    width: 32px;
+    width: 42px;
+    min-width: 42px;
     border: 0;
-    border-radius: 6px;
+    border-radius: 7px;
     background: #238636;
     color: white;
-    font-size: 14px;
+    font-size: 17px;
     display: grid;
     place-items: center;
 }
+
+.chat-input-area button:hover:not(:disabled) {
+    background: #2ea043;
+}
+
+.chat-input-area button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* ---------- Four resize handles ---------- */
+
+.resize-handle {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    z-index: 110;
+    touch-action: none;
+    user-select: none;
+}
+
+.resize-nw { top: 0;    left: 0;  cursor: nw-resize; }
+.resize-ne { top: 0;    right: 0; cursor: ne-resize; }
+.resize-sw { bottom: 0; left: 0;  cursor: sw-resize; }
+.resize-se { bottom: 0; right: 0; cursor: se-resize; }
+
+.resize-handle::after {
+    content: "";
+    position: absolute;
+    width: 9px;
+    height: 9px;
+    opacity: 0.55;
+    transition: opacity 0.2s ease;
+}
+
+.resize-se::after { right: 3px; bottom: 3px; border-right: 2px solid #8b949e; border-bottom: 2px solid #8b949e; }
+.resize-sw::after { left: 3px;  bottom: 3px; border-left: 2px solid #8b949e;  border-bottom: 2px solid #8b949e; }
+.resize-ne::after { right: 3px; top: 3px;    border-right: 2px solid #8b949e; border-top: 2px solid #8b949e; }
+.resize-nw::after { left: 3px;  top: 3px;    border-left: 2px solid #8b949e;  border-top: 2px solid #8b949e; }
+
+.resize-handle:hover::after {
+    opacity: 1;
+    border-color: var(--accent);
+}
+
+/* ---------- Floating chat button ---------- */
 
 .floating-chat {
     position: fixed;
@@ -772,22 +930,31 @@ footer {
     color: var(--text);
     font-size: 18px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    z-index: 99;
+    z-index: 999;
     display: grid;
     place-items: center;
-    transition: background 0.15s ease;
+    touch-action: manipulation;
+    transition: background-color 0.15s ease, opacity 0.2s ease, transform 0.2s ease;
 }
 
 .floating-chat:hover {
     background: var(--panel-hover);
 }
 
+.floating-chat:not(.visible) {
+    opacity: 0;
+    transform: scale(0.75);
+    visibility: hidden;
+    pointer-events: none;
+}
 
-/* RESPONSIVE DESIGN */
+/* ==========================================
+   RESPONSIVE
+========================================== */
 
 @media (max-width: 1100px) {
     .stats-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     .charts-grid {
@@ -796,24 +963,30 @@ footer {
 }
 
 @media (max-width: 750px) {
+    .app-layout {
+        min-height: 100vh;
+        min-height: 100dvh;
+    }
+
+    /* Sidebar is position: fixed, so content must be pushed right by its width */
     .sidebar {
-        width: 64px;
+        width: 58px;
         padding: 16px 8px;
     }
 
     .brand {
+        justify-content: center;
         padding: 0 0 24px;
     }
 
     .brand > div:last-child,
     .menu-label,
-    .nav-item:not(.active),
     .sidebar-bottom {
         display: none;
     }
 
     .nav-item {
-        font-size: 0;
+        font-size: 0;               /* hide text, keep icon */
         text-align: center;
         padding: 10px 4px;
     }
@@ -824,9 +997,9 @@ footer {
     }
 
     .main-content {
-        margin-left: 64px;
+        margin-left: 58px;
+        width: calc(100% - 58px);
         padding: 20px 16px;
-        width: calc(100% - 64px);
     }
 
     .topbar {
@@ -839,27 +1012,44 @@ footer {
         justify-content: space-between;
     }
 
-    .stats-grid {
-        gap: 10px;
-    }
-
-    .stat-card {
-        padding: 14px;
-    }
-
-    .stat-card h2 {
-        font-size: 18px;
-    }
+    .stats-grid { gap: 10px; }
+    .stat-card { padding: 14px; }
+    .stat-card h2 { font-size: 18px; }
 
     .budget-list {
         grid-template-columns: 1fr;
     }
 
     .chat-widget {
-        width: calc(100% - 20px);
-        right: 10px;
-        height: 65vh;
-        bottom: 75px;
+        left: 8px !important;
+        right: 8px !important;
+        top: auto !important;
+        bottom: 8px !important;
+        width: auto !important;
+        height: min(78vh, 680px) !important;
+        height: min(78dvh, 680px) !important;
+        min-width: 0;
+        min-height: 300px;
+        max-width: none;
+        border-radius: 18px;
+    }
+
+    .resize-handle { display: none !important; }
+    .chat-header { cursor: default; }
+    .chat-input-area input { font-size: 16px; }   /* stops iOS zoom on focus */
+
+    .chat-suggestions {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+    }
+
+    .chat-suggestions button { flex: 0 0 auto; }
+
+    .floating-chat {
+        right: 16px;
+        bottom: 16px;
+        width: 54px;
+        height: 54px;
     }
 
     footer {
@@ -868,8 +1058,37 @@ footer {
     }
 }
 
-@media (max-width: 400px) {
-    .stats-grid {
-        grid-template-columns: 1fr;
+@media (max-width: 480px) {
+    .sidebar { width: 52px; }
+
+    .main-content {
+        margin-left: 52px;
+        width: calc(100% - 52px);
+        padding: 16px 10px;
+    }
+
+    .stats-grid { grid-template-columns: 1fr; }
+
+    .top-actions {
+        align-items: stretch;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .top-actions > * { width: 100%; justify-content: center; }
+
+    .chat-widget {
+        height: calc(100vh - 16px) !important;
+        height: calc(100dvh - 16px) !important;
+    }
+
+    .bot-message, .user-message { max-width: 88%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+
+    * {
+        transition: none !important;
     }
 }
