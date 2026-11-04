@@ -1,27 +1,56 @@
 
 version: "3.1"
 
+# ==================================================
 # 1. INTENTS
+# ==================================================
+
 intents:
   - greet
   - goodbye
+
+  # Expense management
   - add_expense
   - check_total
+  - check_category_total
   - category_summary
   - show_history
-  - delete_expense
+  - check_date_total
+  - filtered_history
+  - highest_expense
+  - average_expense
+
+  # Conversational follow-ups
+  - followup_category
+  - provide_category
+
+  # Budget management
   - set_budget
   - check_budget
+
+  # Other
+  - delete_expense
   - bot_help
   - nlu_fallback
 
+
+# ==================================================
 # 2. ENTITIES
+# ==================================================
+
 entities:
   - amount
   - category
+  - date_period
 
+
+# ==================================================
 # 3. SLOTS
+# ==================================================
+
 slots:
+
+  # Expense amount or budget amount
   amount:
     type: float
     influence_conversation: false
@@ -29,37 +58,55 @@ slots:
       - type: from_entity
         entity: amount
 
+  # Expense category
   category:
     type: text
-    influence_conversation: false
+    influence_conversation: true
     mappings:
       - type: from_entity
         entity: category
 
+  # Date filter
+  date_period:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: date_period
+
+  # Optional expense description
   description:
     type: text
     influence_conversation: false
     mappings:
       - type: custom
 
+
+# ==================================================
 # 4. RESPONSES
+# ==================================================
+
 responses:
 
+  # Greeting
   utter_greet:
     - text: "Hello! Welcome to SpendWise. How can I help you manage your expenses today?"
 
+  # Goodbye
   utter_goodbye:
     - text: "Goodbye! Keep tracking your expenses with SpendWise."
 
+  # Expense questions
   utter_ask_amount:
     - text: "How much did you spend?"
 
   utter_ask_category:
-    - text: "Which category does this expense belong to? For example, Food, Shopping or Travel."
+    - text: "Which category does this expense belong to? For example, Food, Shopping, Books, Travel or Transport."
 
   utter_expense_added:
     - text: "Your expense has been successfully saved!"
 
+  # Spending information
   utter_total:
     - text: "Let me calculate your total spending."
 
@@ -69,35 +116,84 @@ responses:
   utter_history:
     - text: "Here are your recent expenses."
 
+  # Deletion
   utter_deleted:
     - text: "Your expense has been deleted."
 
+  # Budget
   utter_budget_set:
     - text: "Your budget has been saved successfully."
 
   utter_budget_status:
     - text: "Here is your current budget status."
 
+  # Help
   utter_help:
     - text: |
         I am SpendWise, your personal expense tracker!
+
         You can ask me to:
-        1. Add an expense
-        2. Check total spending
-        3. View category-wise expenses
-        4. View expense history
-        5. Set a budget
-        6. Check your budget
 
+        1. Add an expense.
+        2. Check your total spending.
+        3. Check spending in a particular category.
+        4. View category-wise expenses.
+        5. View your expense history.
+        6. Check spending by date.
+        7. Find your highest expense.
+        8. Calculate average spending.
+        9. Set a monthly budget.
+        10. Check your remaining budget.
+
+        Example questions:
+
+        - I spent 500 on books.
+        - How much did I spend on food?
+        - How much did I spend yesterday?
+        - Show my recent expenses.
+        - What was my biggest expense?
+
+  # Fallback
   utter_fallback:
-    - text: "Sorry, I didn't understand that. Try asking me to add an expense or check your spending."
+    - text: "Sorry, I couldn't understand that. Try asking about your expenses, categories, history or budgets."
 
+  utter_ask_rephrase:
+    - text: "Could you rephrase that? For example, 'How much did I spend on food?'"
+
+  # Missing information
+  utter_missing_category:
+    - text: "I have the expense amount. Which category should I save it under?"
+
+  utter_missing_amount:
+    - text: "Please tell me the amount you spent."
+
+
+# ==================================================
 # 5. CUSTOM ACTIONS
+# ==================================================
+
 actions:
+
+  # Expense management
   - action_add_expense
+  - action_complete_expense
+
+  # Spending queries
   - action_check_total
+  - action_check_category_total
   - action_category_summary
   - action_show_history
-  - action_delete_expense
+  - action_check_date_total
+  - action_filtered_history
+  - action_highest_expense
+  - action_average_expense
+
+  # Conversational follow-ups
+  - action_followup_category
+
+  # Budget management
   - action_set_budget
   - action_check_budget
+
+  # Other
+  - action_delete_expense

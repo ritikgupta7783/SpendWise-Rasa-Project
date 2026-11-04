@@ -3,62 +3,157 @@ version: "3.1"
 
 stories:
 
-# Story 1: Greeting
-- story: greet user
-  steps:
-    - intent: greet
-    - action: utter_greet
+# ==================================================
+# 1. ADD EXPENSE
+# ==================================================
 
-# Story 2: Goodbye
-- story: say goodbye
-  steps:
-    - intent: goodbye
-    - action: utter_goodbye
-
-# Story 3: Add expense
-- story: add a new expense
+- story: add expense with amount and category
   steps:
     - intent: add_expense
     - action: action_add_expense
 
-# Story 4: Check total expenses
-- story: check total spending
+
+# ==================================================
+# 2. COMPLETE EXPENSE AFTER CATEGORY REPLY
+# ==================================================
+
+- story: complete expense with missing category
+  steps:
+    - intent: add_expense
+    - action: action_add_expense
+    - intent: provide_category
+    - action: action_complete_expense
+
+
+# ==================================================
+# 3. CHECK OVERALL SPENDING
+# ==================================================
+
+- story: check overall spending
   steps:
     - intent: check_total
     - action: action_check_total
 
-# Story 5: Category summary
+
+# ==================================================
+# 4. CHECK CATEGORY-SPECIFIC SPENDING
+# ==================================================
+
+- story: check category spending
+  steps:
+    - intent: check_category_total
+    - action: action_check_category_total
+
+
+# ==================================================
+# 5. CATEGORY-WISE SUMMARY
+# ==================================================
+
 - story: view category summary
   steps:
     - intent: category_summary
     - action: action_category_summary
 
-# Story 6: Show expense history
+
+# ==================================================
+# 6. SHOW EXPENSE HISTORY
+# ==================================================
+
 - story: view expense history
   steps:
     - intent: show_history
     - action: action_show_history
 
-# Story 7: Delete expense
-- story: delete an expense
+
+# ==================================================
+# 7. CHECK DATE-WISE SPENDING
+# ==================================================
+
+- story: check spending by date
+  steps:
+    - intent: check_date_total
+    - action: action_check_date_total
+
+
+# ==================================================
+# 8. FILTER EXPENSE HISTORY
+# ==================================================
+
+- story: filter expense history
+  steps:
+    - intent: filtered_history
+    - action: action_filtered_history
+
+
+# ==================================================
+# 9. FIND HIGHEST EXPENSE
+# ==================================================
+
+- story: find highest expense
+  steps:
+    - intent: highest_expense
+    - action: action_highest_expense
+
+
+# ==================================================
+# 10. CALCULATE AVERAGE EXPENSE
+# ==================================================
+
+- story: calculate average expense
+  steps:
+    - intent: average_expense
+    - action: action_average_expense
+
+
+# ==================================================
+# 11. CATEGORY FOLLOW-UP
+# ==================================================
+
+- story: ask about another category
+  steps:
+    - intent: check_category_total
+    - action: action_check_category_total
+    - intent: followup_category
+    - action: action_followup_category
+
+
+# ==================================================
+# 12. DELETE EXPENSE
+# ==================================================
+
+- story: delete expense
   steps:
     - intent: delete_expense
     - action: action_delete_expense
 
-# Story 8: Set budget
+
+# ==================================================
+# 13. SET MONTHLY BUDGET
+# ==================================================
+
 - story: set monthly budget
   steps:
     - intent: set_budget
     - action: action_set_budget
 
-# Story 9: Check budget
-- story: check budget status
+
+# ==================================================
+# 14. CHECK BUDGET
+# ==================================================
+
+- story: check budget
   steps:
     - intent: check_budget
     - action: action_check_budget
 
-# Story 10: Help
-- story: help user
+
+# ==================================================
+# 15. BUDGET FOLLOW-UP
+# ==================================================
+
+- story: check another category budget
   steps:
-    - intent: bot_help
-    - action: utter_help
+    - intent: check_budget
+    - action: action_check_budget
+    - intent: followup_category
+    - action: action_followup_category

@@ -3,22 +3,32 @@ version: "3.1"
 
 nlu:
 
-# -------------------------
-# GREETING INTENT
-# -------------------------
+# ==================================================
+# 1. GREETING INTENT
+# ==================================================
+
 - intent: greet
   examples: |
     - hi
     - hello
     - hey
     - good morning
+    - good afternoon
     - good evening
     - hello spendwise
     - hey there
+    - hi there
+    - how are you
+    - what's up
+    - greetings
+    - start
+    - let's start
 
-# -------------------------
-# GOODBYE INTENT
-# -------------------------
+
+# ==================================================
+# 2. GOODBYE INTENT
+# ==================================================
+
 - intent: goodbye
   examples: |
     - bye
@@ -27,26 +37,62 @@ nlu:
     - talk to you later
     - exit
     - see you
+    - that's all
+    - thank you goodbye
+    - have a nice day
+    - catch you later
 
-# -------------------------
-# ADD EXPENSE INTENT
-# -------------------------
+
+# ==================================================
+# 3. ADD EXPENSE INTENT
+# ==================================================
+
 - intent: add_expense
   examples: |
     - I spent [200](amount) on [food](category)
     - Add [500](amount) for [shopping](category)
     - I paid [150](amount) for [transport](category)
     - Record [300](amount) spent on [entertainment](category)
-    - I bought lunch for [120](amount)
+    - I bought lunch for [120](amount) on [food](category)
     - Add an expense of [250](amount) for [food](category)
     - I spent [1000](amount) on [shopping](category)
     - Record my [450](amount) [travel](category) expense
     - I paid [80](amount) for [groceries](category)
-    - spent [600](amount) on [education](category)
+    - Spent [600](amount) on [education](category)
+    - I spent [1200](amount) on [books](category)
+    - I bought books for [500](amount)
+    - I paid [450](amount) for [groceries](category)
+    - I spent [800](amount) on [travel](category)
+    - I spent [250](amount) on [food](category)
+    - I purchased something for [700](amount) in [shopping](category)
+    - [1200](amount) spent on [books](category)
+    - Add an expense of [600](amount) for [transport](category)
+    - I paid [350](amount) for [entertainment](category)
+    - Record an expense of [900](amount) for [medical](category)
+    - Add [100](amount) to my [food](category) expenses
+    - I just spent [250](amount)
+    - Record [500](amount)
+    - Add a new expense of [700](amount)
+    - I paid [300](amount)
+    - Spent [150](amount)
+    - I bought something for [400](amount)
+    - My expense was [650](amount)
+    - I purchased a book for [350](amount)
+    - I paid [200](amount) for [books](category)
+    - I spent [900](amount) on [medical](category)
+    - I spent [1500](amount) on [rent](category)
+    - Add [1000](amount) for [utilities](category)
+    - I paid [500](amount) for [fuel](category)
+    - I spent [200](amount) on [food](category) yesterday
+    - Please record [750](amount) under [shopping](category)
+    - Log an expense of [120](amount) for [transport](category)
+    - I have spent [300](amount) on [groceries](category)
 
-# -------------------------
-# CHECK TOTAL INTENT
-# -------------------------
+
+# ==================================================
+# 4. CHECK OVERALL EXPENSE TOTAL
+# ==================================================
+
 - intent: check_total
   examples: |
     - How much have I spent?
@@ -56,10 +102,63 @@ nlu:
     - How much money did I spend?
     - Tell me my total expenditure
     - What is my spending so far?
+    - What is my overall expense?
+    - Give me my total
+    - How much money have I spent in total?
+    - Show my complete spending
+    - What is the total amount I spent?
+    - Tell me my overall spending
+    - Calculate my total expenses
+    - How much have I spent altogether?
+    - What is my total expense amount?
+    - Show the total money I have spent
+    - Give me an overview of my spending
+    - How much money has gone out?
+    - Tell me how much I have spent overall
 
-# -------------------------
-# CATEGORY SUMMARY INTENT
-# -------------------------
+
+# ==================================================
+# 5. CHECK CATEGORY-SPECIFIC TOTAL
+# ==================================================
+
+- intent: check_category_total
+  examples: |
+    - How much did I spend on [food](category)?
+    - How much have I spent on [shopping](category)?
+    - What is my total spending on [transport](category)?
+    - How much money went to [entertainment](category)?
+    - Tell me my [travel](category) expenses
+    - Total expenses for [groceries](category)
+    - How much have I spent on [books](category)?
+    - What did I spend on [education](category)?
+    - Show my [food](category) spending
+    - Total spent on [shopping](category)?
+    - How much did I spend in [books](category)?
+    - Give me the total for [transport](category)
+    - My expenses in [food](category)
+    - Spending on [travel](category)
+    - How much was spent on [groceries](category)?
+    - What is the amount spent on [books](category)?
+    - Show me how much I spent on [entertainment](category)
+    - How much did [food](category) cost me?
+    - What is my [books](category) total?
+    - Tell me the total amount spent on [medical](category)
+    - What did [shopping](category) cost?
+    - How much went into [food](category)?
+    - Calculate my [travel](category) expenses
+    - Show [education](category) expenses
+    - How much did I spend for [groceries](category)?
+    - How much money did I use for [fuel](category)?
+    - What is my [rent](category) expenditure?
+    - Give me the total for [utilities](category)
+    - How much did I spend on [health](category)?
+    - What is the amount spent on [shopping](category) so far?
+
+
+# ==================================================
+# 6. CATEGORY-WISE SUMMARY
+# ==================================================
+
 - intent: category_summary
   examples: |
     - Show my category wise expenses
@@ -68,10 +167,22 @@ nlu:
     - Give me a category summary
     - Where is my money going?
     - Show expenses by category
+    - Break down my expenses
+    - Compare all my expense categories
+    - Give me a spending report by category
+    - Which categories have I spent money on?
+    - Show category wise spending
+    - Give me my expense distribution
+    - How are my expenses divided?
+    - Show me a breakdown of all spending
+    - Which category costs me the most?
+    - Give me a complete category report
 
-# -------------------------
-# SHOW HISTORY INTENT
-# -------------------------
+
+# ==================================================
+# 7. SHOW EXPENSE HISTORY
+# ==================================================
+
 - intent: show_history
   examples: |
     - Show my recent expenses
@@ -80,10 +191,108 @@ nlu:
     - Show all transactions
     - List my expenses
     - Show my last expenses
+    - Display recent transactions
+    - Show my transaction history
+    - What are my latest expenses?
+    - Show the last 10 transactions
+    - Give me my expense records
+    - Show all my spending records
+    - What transactions have I made?
+    - Display my recent spending
+    - Show my expenses list
+    - Give me my transaction details
 
-# -------------------------
-# DELETE EXPENSE INTENT
-# -------------------------
+
+# ==================================================
+# 8. CHECK EXPENSES BY DATE
+# ==================================================
+
+- intent: check_date_total
+  examples: |
+    - How much did I spend [yesterday](date_period)?
+    - How much did I spend [today](date_period)?
+    - What was my spending [this week](date_period)?
+    - How much have I spent [this month](date_period)?
+    - Tell me my expenses [last month](date_period)
+    - What did I spend [last week](date_period)?
+    - Show my total expenses [today](date_period)
+    - Calculate my spending [yesterday](date_period)
+    - What is my total for [this month](date_period)?
+    - How much money went out [last month](date_period)?
+    - Give me my expenses for [this week](date_period)
+    - Show spending [this year](date_period)
+    - How much did I spend [last year](date_period)?
+    - What is my spending for [today](date_period)?
+    - Calculate my expenses for [last week](date_period)
+    - Show my spending [this month](date_period)
+    - How much money did I spend [this year](date_period)?
+    - Give me the total for [yesterday](date_period)
+
+
+# ==================================================
+# 9. FILTERED EXPENSE HISTORY
+# ==================================================
+
+- intent: filtered_history
+  examples: |
+    - Show my [food](category) expenses
+    - List my [shopping](category) transactions
+    - Show [books](category) expenses [this month](date_period)
+    - Display my [travel](category) expenses [yesterday](date_period)
+    - Show my [food](category) transactions [today](date_period)
+    - List all my [transport](category) expenses
+    - Show [education](category) spending [last month](date_period)
+    - Find my [groceries](category) transactions
+    - Show expenses for [entertainment](category) [this week](date_period)
+    - Show all my [books](category) transactions
+    - Display my [medical](category) expenses
+    - List [shopping](category) transactions [this month](date_period)
+    - Find my [food](category) expenses [yesterday](date_period)
+    - Show [fuel](category) expenses
+    - Give me [rent](category) transactions [this month](date_period)
+
+
+# ==================================================
+# 10. HIGHEST EXPENSE
+# ==================================================
+
+- intent: highest_expense
+  examples: |
+    - What was my biggest expense?
+    - Show my highest expense
+    - Which transaction cost the most?
+    - What is my most expensive purchase?
+    - Find my largest expense
+    - Which expense was the highest?
+    - Show the maximum transaction
+    - What did I spend the most money on?
+    - What is my biggest transaction?
+    - Find my most expensive transaction
+    - Which purchase was the costliest?
+
+
+# ==================================================
+# 11. AVERAGE EXPENSE
+# ==================================================
+
+- intent: average_expense
+  examples: |
+    - What is my average expense?
+    - Calculate my average spending
+    - How much do I spend on average?
+    - Tell me my average transaction amount
+    - What is the average of my expenses?
+    - Calculate average expense amount
+    - What is my mean spending?
+    - Find the average amount of my transactions
+    - How much is an average expense?
+    - Calculate my average transaction value
+
+
+# ==================================================
+# 12. DELETE EXPENSE
+# ==================================================
+
 - intent: delete_expense
   examples: |
     - Delete my last expense
@@ -91,20 +300,37 @@ nlu:
     - I want to delete a transaction
     - Delete an expense record
     - Remove my recent transaction
+    - Delete my latest transaction
+    - I want to remove an expense
+    - Erase my last transaction
+    - Delete my recent purchase
+    - Remove my last spending record
 
-# -------------------------
-# SET BUDGET INTENT
-# -------------------------
+
+# ==================================================
+# 13. SET BUDGET
+# ==================================================
+
 - intent: set_budget
   examples: |
     - Set my [food](category) budget to [3000](amount)
     - My [shopping](category) budget is [5000](amount)
     - Set a monthly budget of [10000](amount) for [food](category)
     - I want a [2000](amount) [travel](category) budget
+    - Set my [books](category) budget to [1500](amount)
+    - My [transport](category) limit is [2500](amount)
+    - Create a budget of [4000](amount) for [groceries](category)
+    - Set my [entertainment](category) budget to [2000](amount)
+    - I want to limit [shopping](category) to [3000](amount)
+    - Set [education](category) budget to [5000](amount)
+    - My monthly [medical](category) budget is [4000](amount)
+    - Create a [1000](amount) budget for [fuel](category)
 
-# -------------------------
-# CHECK BUDGET INTENT
-# -------------------------
+
+# ==================================================
+# 14. CHECK BUDGET
+# ==================================================
+
 - intent: check_budget
   examples: |
     - Check my budget
@@ -112,10 +338,21 @@ nlu:
     - Am I exceeding my budget?
     - Show my budget status
     - How much can I still spend?
+    - What is my remaining budget?
+    - Show my monthly limits
+    - How much budget remains for [food](category)?
+    - Am I over my [shopping](category) budget?
+    - How much have I used from my budget?
+    - Show my remaining [travel](category) budget
+    - Is my [food](category) budget exhausted?
+    - How much is left in my [shopping](category) budget?
+    - Check my [books](category) budget
 
-# -------------------------
-# BOT HELP INTENT
-# -------------------------
+
+# ==================================================
+# 15. HELP
+# ==================================================
+
 - intent: bot_help
   examples: |
     - What can you do?
@@ -123,3 +360,47 @@ nlu:
     - Show available commands
     - How do I use SpendWise?
     - What features do you have?
+    - Explain your features
+    - What can I ask you?
+    - How does this chatbot work?
+    - Tell me how to use this application
+    - Show me the available features
+
+
+# ==================================================
+# 16. CATEGORY FOLLOW-UP
+# ==================================================
+
+- intent: followup_category
+  examples: |
+    - What about [food](category)?
+    - And [shopping](category)?
+    - What about [books](category)?
+    - How about [transport](category)?
+    - And [travel](category)?
+    - What about [groceries](category)?
+    - Show me [food](category) instead
+    - Now [shopping](category)
+    - What about [medical](category)?
+    - And [education](category)?
+    - How about [entertainment](category)?
+
+
+# ==================================================
+# 17. PROVIDE MISSING CATEGORY
+# ==================================================
+
+- intent: provide_category
+  examples: |
+    - [books](category)
+    - [food](category)
+    - [shopping](category)
+    - [transport](category)
+    - [travel](category)
+    - [groceries](category)
+    - [education](category)
+    - [entertainment](category)
+    - [medical](category)
+    - [fuel](category)
+    - [rent](category)
+    - [utilities](category)

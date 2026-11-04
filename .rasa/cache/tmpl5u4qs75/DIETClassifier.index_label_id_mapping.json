@@ -1,0 +1,19 @@
+{
+  "0": "add_expense",
+  "1": "average_expense",
+  "2": "bot_help",
+  "3": "category_summary",
+  "4": "check_budget",
+  "5": "check_category_total",
+  "6": "check_date_total",
+  "7": "check_total",
+  "8": "delete_expense",
+  "9": "filtered_history",
+  "10": "followup_category",
+  "11": "goodbye",
+  "12": "greet",
+  "13": "highest_expense",
+  "14": "provide_category",
+  "15": "set_budget",
+  "16": "show_history"
+}

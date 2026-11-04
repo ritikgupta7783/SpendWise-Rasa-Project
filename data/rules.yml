@@ -1,22 +1,23 @@
-
 version: "3.1"
 
 rules:
 
-# Rule 1: Greeting
-- rule: Respond to greeting
-  steps:
-    - intent: greet
-    - action: utter_greet
+  - rule: Respond to greeting
+    steps:
+      - intent: greet
+      - action: utter_greet
 
-# Rule 2: Goodbye
-- rule: Respond to goodbye
-  steps:
-    - intent: goodbye
-    - action: utter_goodbye
+  - rule: Respond to goodbye
+    steps:
+      - intent: goodbye
+      - action: utter_goodbye
 
-# Rule 3: Help
-- rule: Show help information
-  steps:
-    - intent: bot_help
-    - action: utter_help
+  - rule: Provide help
+    steps:
+      - intent: bot_help
+      - action: utter_help
+
+  - rule: Handle NLU fallback
+    steps:
+      - intent: nlu_fallback
+      - action: utter_fallback
